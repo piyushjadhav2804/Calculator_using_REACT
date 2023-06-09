@@ -1,0 +1,77 @@
+
+
+.App {
+  margin: 25vh auto;
+  background-color: #0e0e30;
+  width: 280px;
+  border: 1px grey solid;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  box-shadow: 0 0 6px black;
+  transform: scale(1.2);
+}
+
+/* Display to display the input, result from the users  */
+
+#display {
+  width: 100%;
+  background: rgb(214, 155, 214);
+  min-height: 60px;
+  height: 75px;
+  color: rgb(79, 38, 117);
+  font-family: sans-serif;
+  font-size: 2rem;
+  border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  text-align: right;
+  padding: 25px 10px 2px 2px;
+}
+
+/* Buttons like 1, 2 , = ,+ etc. */
+
+.buttons {
+  font-family: sans-serif;
+  height: auto;
+  min-height: 48px;
+  height: 55px;
+  width: 25%;
+  border-top: 0;
+  color: white;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.buttons:hover {
+  background-color: #7b7878;
+}
+
+.buttons[data-value="0"] {
+  width: 50%;
+  border-bottom-left-radius: 10px;
+}
+
+.buttons:nth-child(4n + 1) {
+  background-color: #d32f2ff0;
+}
+
+.buttons:nth-child(4n + 1):hover,
+.buttons[data-value="="]:hover {
+  background-color: #f56666f0;
+}
+
+.buttons[data-value="="] {
+  background-color: #e22674f0;
+  border-bottom-right-radius: 10px;
+}
+
+.buttons[data-value="="]:hover {
+  background-color: #e74d8df0;
+  border-bottom-right-radius: 10px;
+}
