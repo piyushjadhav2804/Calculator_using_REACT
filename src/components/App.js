@@ -1,3 +1,4 @@
+// import necessary dependencies
 import React, { useState } from "react";
 import "../styles/App.css";
 
@@ -13,10 +14,16 @@ function App() {
 
   //handles inputting a digit into the calculator
   const inputDigit = (digit) => {
+
+    //if waitingForSecondOperand is true, then user has just performed an operation and second operand is expected
     if (waitingForSecondOperand) {
       setDisplayValue(digit);
-      setWaitingForSecondOperand(false);
-    } else {
+      setWaitingForSecondOperand(false); //now we have second operand so we set it to false
+    }
+
+    //if waitingForSecondOperand is false, it means we are still entering firs/second operand
+    else {
+
       setDisplayValue(displayValue === "0" ? digit : displayValue + digit);
     }
   };
@@ -30,24 +37,28 @@ function App() {
 
   //resets the display & clears all operands and operators
   const clearDisplay = () => {
-    setDisplayValue('0');
-    setOperand1(null);
+    setDisplayValue('0'); //resetting calculator display to 0
+    setOperand1(null);   
     setOperator(null);
     setWaitingForSecondOperand(false);
   };
 
   //performs the desired mathematical operation
   const performOperation = (nextOperator) => {
+    //converts the displayValue from a string to a floating-point number
     const inputValue = parseFloat(displayValue);
 
-    if(operand1 === null) {
-         setOperand1(inputValue);
-    }
-
-    else if(operator) {
+    //checks if there is no existing first operand stored. 
+    //If true, it means that the current inputValue should be stored as the first operand.
+    if (operand1 === null) {
+      setOperand1(inputValue);
+    } 
+    
+    //checks if there is an existing operator
+    else if (operator) {
       const result = calculate(operand1, inputValue, operator);
       setDisplayValue(String(result));
-      setOperand1(result);
+      setOperand1(result); //allows chaining multiple operations if the user continues to enter operators and operands.
     }
 
     setWaitingForSecondOperand(true);
@@ -83,9 +94,10 @@ function App() {
   };
 
 
+  //In the return statement, we define the JSX structure of our calculator app
   return (
     <div className="App">
-      <div id="display">{displayValue}</div>
+      <div id="display">{displayValue}</div>  
       <div className="buttons" onClick={clearDisplay}>
         A/C
       </div>
